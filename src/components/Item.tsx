@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ContextType, ItemType } from '../api/types';
 import { DataContext } from '../App';
 import { useParams } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 export const Item = () => {
 
@@ -12,6 +13,8 @@ export const Item = () => {
   const { setError, setIsLoading, setIsShowOptions } = useContext<ContextType>(DataContext);
 
   const [currentItem, setCurrentItem] = useState<ItemType | null>(null);
+
+  console.log(currentItem);
 
   const getItem = async() => {
     try {
@@ -36,7 +39,12 @@ export const Item = () => {
   return (
     <div>
       <div>{currentItem?.name}</div>
-      <img src={currentItem?.image_url} alt="img" />
+      <div>{currentItem?.category}</div>
+      <div>{currentItem?.price}</div>
+      <img src={currentItem?.image_url} alt="cat_image" />
+      <div>Created: {dayjs(currentItem?.created_at).format('DD MMMM YYYY')}</div>
+      <div>Updated: {dayjs(currentItem?.updated_at).format('DD MMMM YYYY')}</div>
+      {currentItem?.available && <div>available</div>}
     </div>
   );
 };
