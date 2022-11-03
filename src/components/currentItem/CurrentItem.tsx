@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { API } from '../api/api';
+import { API } from '../../api/api';
 import axios from 'axios';
-import { ContextType, ItemType } from '../api/types';
-import { DataContext } from '../App';
+import { ContextType, ItemType } from '../../api/types';
+import { DataContext } from '../app/App';
 import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 
-export const Item = () => {
+export const CurrentItem = () => {
 
   const { itemId } = useParams();
 

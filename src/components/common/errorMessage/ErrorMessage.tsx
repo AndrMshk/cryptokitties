@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ErrorType } from '../../api/types';
+import { ErrorType } from '../../../api/types';
 
 type ErrorMessagePropsType = {
   error: ErrorType

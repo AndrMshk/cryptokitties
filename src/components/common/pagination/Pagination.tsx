@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { PaginationOptions, PaginationParamType } from '../../api/types';
+import { PaginationOptions, PaginationParamType } from '../../../api/types';
 
 type PaginationPropsType = {
   paginationOptions: PaginationOptions

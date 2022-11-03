@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { Main } from './components/Main';
-import { ErrorMessage } from './components/common/ErrorMessage';
-import { Loading } from './components/common/Loading';
-import { API } from './api/api';
+import { Header } from '../header/Header';
+import { Footer } from '../footer/Footer';
+import { Main } from '../main/Main';
+import { ErrorMessage } from '../common/errorMessage/ErrorMessage';
+import { Loading } from '../common/loading/Loading';
+import { API } from '../../api/api';
 import axios from 'axios';
 import {
   ContextType,
@@ -14,7 +14,8 @@ import {
   PaginationParamType,
   SortOrderType,
   SortParamType,
-} from './api/types';
+} from '../../api/types';
+import './app.scss';
 
 export const DataContext = React.createContext<ContextType>({} as ContextType);
 
@@ -54,7 +55,7 @@ function App() {
   useEffect(() => {getItems();}, [paginationParam, sortParam, sortOrder]);
 
   return (
-    <div>
+    <div style={{height: '100%'}}>
       <DataContext.Provider value={{
         setIsLoading,
         setIsShowOptions,
@@ -68,7 +69,9 @@ function App() {
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
         />
-        <Main />
+        <div className="app_container">
+          <Main />
+        </div>
         <Footer
           isShowOptions={isShowOptions}
           paginationOptions={paginationOptions}

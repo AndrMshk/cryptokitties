@@ -1,0 +1,28 @@
+@import "./src/commonStyles/variables";
+@import "./src/commonStyles/mixins";
+
+.header_container {
+	@include flex(center, row, center);
+	width: 100%;
+	background-image: url('../../assets/texture.jpg');
+	height: 80px;
+	position: fixed;
+	text-align: center;
+	h1 {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: $hoverColor;
+	}
+	.header_sort-panel {
+		@include flex(flex-end, row, center);
+		display: none;
+		gap: 20px;
+		width: 1024px;
+		text-align: right;
+	}
+	.show {
+		display: flex;
+	}
+}

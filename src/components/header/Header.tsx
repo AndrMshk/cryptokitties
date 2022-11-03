@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { SortOrderType, SortParamType } from '../api/types';
+import { SortOrderType, SortParamType } from '../../api/types';
+import './header.scss';
+import cn from 'classnames'
 
 type HeaderPropsType = {
   isShowOptions: boolean
@@ -9,6 +11,29 @@ type HeaderPropsType = {
   setSortOrder: (sortOrder: SortOrderType) => void
 }
 
+const selectOptions = [
+  {
+    value: SortParamType.NULL,
+    title: '',
+  },
+  {
+    value: SortParamType.ID,
+    title: 'Id',
+  },
+  {
+    value: SortParamType.NAME,
+    title: 'Name',
+  },
+  {
+    value: SortParamType.CATEGORY,
+    title: 'Category',
+  },
+  {
+    value: SortParamType.PRICE,
+    title: 'Price',
+  },
+];
+
 export const Header: FC<HeaderPropsType> = ({
   isShowOptions,
   sortOrder,
@@ -16,29 +41,6 @@ export const Header: FC<HeaderPropsType> = ({
   sortParam,
   setSortParam,
 }) => {
-
-  const selectOptions = [
-    {
-      value: SortParamType.NULL,
-      title: '',
-    },
-    {
-      value: SortParamType.ID,
-      title: 'Id',
-    },
-    {
-      value: SortParamType.NAME,
-      title: 'Name',
-    },
-    {
-      value: SortParamType.CATEGORY,
-      title: 'Category',
-    },
-    {
-      value: SortParamType.PRICE,
-      title: 'Price',
-    },
-  ];
 
   const onChangeSortParamHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortParam(e.target.value as SortParamType);
@@ -54,15 +56,19 @@ export const Header: FC<HeaderPropsType> = ({
   };
 
   return (
-    <header>
+    <header className="header_container">
       <h1>Cryptokitties</h1>
-      {isShowOptions && <div>
+      {/*<div className={cn({isShowOptions: 'show'})}></div>*/}
+
+
+      {/*{isShowOptions && <div className="header_sort-panel">*/}
+      <div className={cn('header_sort-panel', {show: isShowOptions})}>
         <select name="filter" value={sortParam} onChange={onChangeSortParamHandler}>
           {selectOptions.map((el, index) => <option key={index} value={el.value}>{el.title}</option>)}
         </select>
         <input type="checkbox" checked={sortOrder !== SortOrderType.DESC} onChange={onChangeSortOrderHandler} />
         <button onClick={resetFiltersHandler}>Reset</button>
-      </div>}
+      </div>
     </header>
   );
 };
