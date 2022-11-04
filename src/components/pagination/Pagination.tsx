@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { PaginationOptions, PaginationParamType } from '../../api/types';
 import './pagination.scss';
 import cn from 'classnames';
+import { IoChevronBackOutline, IoChevronForward, IoPlayBackOutline, IoPlayForwardOutline } from 'react-icons/io5';
 
 type PaginationPropsType = {
   paginationOptions: PaginationOptions
@@ -24,10 +25,10 @@ export const Pagination: FC<PaginationPropsType> = ({ paginationOptions, setPagi
         {current_page > 2 &&
         <div className="pagination_arrows-container">
           <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: 1 });}}>
-            Start
+            <IoPlayBackOutline />
           </div>
           <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: prev_page });}}>
-            previous...
+            <IoChevronBackOutline />
           </div>
         </div>}
       </div>
@@ -43,10 +44,10 @@ export const Pagination: FC<PaginationPropsType> = ({ paginationOptions, setPagi
         {current_page < total_pages - 1 &&
         <div className="pagination_arrows-container">
           <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: next_page });}}>
-            ...next
+            <IoChevronForward />
           </div>
           <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: total_pages });}}>
-            End
+            <IoPlayForwardOutline />
           </div>
         </div>}
       </div>

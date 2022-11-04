@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://AndrMshk.github.io/cryptokitties",
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -16,14 +17,15 @@
     "@types/sass": "^1.43.1",
     "axios": "^1.1.3",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.6",
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "sass": "^1.55.0",
     "typescript": "^4.4.2",
-    "dayjs": "^1.11.6",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

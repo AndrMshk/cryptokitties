@@ -3,7 +3,7 @@
 
 .pagination_container {
 	@include flex(space-between, row, center);
-	width: 450px;
+	width: 300px;
 	color: $hoverColor;
 	.pagination_pages {
 		@include flex(center, row, center);
@@ -21,7 +21,7 @@
 		}
 	}
 	.pagination_arrows {
-		width: 100px;
+		width: 50px;
 		.pagination_arrows-container {
 			@include flex(space-between, row, center);
 			gap: 5px;

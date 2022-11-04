@@ -6,6 +6,7 @@ import { DataContext } from '../app/App';
 import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 import './currentItem.scss';
+import ava from '../../assets/cat.png';
 
 export const CurrentItem = () => {
 
@@ -14,6 +15,7 @@ export const CurrentItem = () => {
   const { setError, setIsLoading, setIsShowOptions } = useContext<ContextType>(DataContext);
 
   const [currentItem, setCurrentItem] = useState<ItemType | null>(null);
+  const [isValidPicture, setIsValidPicture] = useState<boolean>(true);
 
   const getItem = async() => {
     try {
@@ -38,7 +40,15 @@ export const CurrentItem = () => {
   return (
     <div className="current-item_container">
       <h3>{currentItem?.name}</h3>
-      <img src={currentItem?.image_url} alt="cat_image" />
+      {isValidPicture
+        ? <img
+          onError={() => {setIsValidPicture(false);}}
+          src={currentItem?.image_url}
+          alt="cat_image" />
+        : <img
+          className="item_default-img"
+          src={ava}
+          alt="cat_image" />}
       <div className="current-item_info">
         <h4>Info</h4>
         {currentItem?.available &&

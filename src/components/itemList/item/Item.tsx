@@ -2,19 +2,9 @@ import React, { FC, useState } from 'react';
 import { ItemType } from '../../../api/types';
 import { useNavigate } from 'react-router-dom';
 import './item.scss';
-// @ts-ignore
 import ava from '../../../assets/cat.png';
 
-export const Item: FC<ItemType> = ({
-  image_url,
-  updated_at,
-  created_at,
-  id,
-  name,
-  available,
-  category,
-  price,
-}) => {
+export const Item: FC<ItemType> = ({ image_url, id, name, price }) => {
 
   const navigate = useNavigate();
 
@@ -31,6 +21,7 @@ export const Item: FC<ItemType> = ({
           src={image_url}
           alt="cat_image" />
         : <img
+          className="item_default-img"
           src={ava}
           alt="cat_image" />}
       <div>Price: {price}</div>

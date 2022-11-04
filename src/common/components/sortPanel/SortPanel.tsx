@@ -2,6 +2,8 @@ import React, { FC, useState } from 'react';
 import './sort-panel.scss';
 import { SortOrderType, SortParamType } from '../../../api/types';
 import { Button } from '../button/Button';
+import { TbArrowDownCircle } from 'react-icons/tb';
+import cn from 'classnames';
 
 type SortPanelPropsType = {
   sortParam: SortParamType
@@ -54,8 +56,8 @@ export const SortPanel: FC<SortPanelPropsType> = ({
     setSortData({ ...sortData, sortParam: e.target.value as SortParamType });
   };
 
-  const onChangeSortOrderHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.checked
+  const onChangeSortOrderHandler = () => {
+    sortData.sortOrder === SortOrderType.DESC
       ? setSortData({ ...sortData, sortOrder: SortOrderType.ASC })
       : setSortData({ ...sortData, sortOrder: SortOrderType.DESC });
   };
@@ -82,18 +84,21 @@ export const SortPanel: FC<SortPanelPropsType> = ({
                 <input
                   onChange={onChangeSortParamHandler}
                   type="radio"
-                  title={el.title}
+                  id={el.value}
                   value={el.value}
                   checked={sortData.sortParam === el.value} />
-                <p>{el.title}</p>
+                <label htmlFor={el.value}>{el.title}</label>
+                {/*<p>{el.title}</p>*/}
               </div>)}
           </div>
-          <input
-            type="checkbox"
-            checked={sortData.sortOrder !== SortOrderType.DESC}
-            onChange={onChangeSortOrderHandler} />
+          <div
+            onClick={onChangeSortOrderHandler}
+            className={cn(['sort-panel_controls__arrow'],
+              { ['sort-panel_controls__arrow-desc']: sortData.sortOrder === SortOrderType.DESC })}>
+            <TbArrowDownCircle />
+          </div>
         </div>
-          <Button title="Ok" action={setSortParamHandler} />
+        <Button title="Ok" action={setSortParamHandler} />
       </div>
       <Button title="Reset" action={resetFiltersHandler} />
     </div>
