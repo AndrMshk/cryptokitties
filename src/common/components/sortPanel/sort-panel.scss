@@ -1,0 +1,33 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.sort-panel_container {
+	@include flex(center, column, center);
+	gap: 10px;
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	background-color: $secondaryBgColor;
+	top: 0;
+	right: 50px;
+	border: 2px solid $textColor;
+	box-shadow: 0 0 5px $textColor;
+	border-radius: 10px;
+	.sort-panel_form {
+		@include flex(center, column, center);
+		gap: 5px;
+		.sort-panel_controls {
+			@include flex(center, row, center);
+			gap: 25px;
+			font-size: 15px;
+			.sort-panel_controls__radio {
+				@include flex(center, column, flex-start);
+				gap: 5px;
+				.sort-panel_controls__radio-button {
+					@include flex(center, row, center);
+					gap: 5px;
+				}
+			}
+		}
+	}
+}

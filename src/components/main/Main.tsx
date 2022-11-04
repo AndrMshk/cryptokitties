@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { CurrentItem } from '../currentItem/CurrentItem';
 import { ItemList } from '../itemList/ItemList';
-import { ErrorPage } from '../common/errorPage/ErrorPage';
+import { ErrorPage } from '../../common/components/errorPage/ErrorPage';
 
 export const Main = () => {
   return (

@@ -3,7 +3,7 @@ import { PaginationOptions, PaginationParamType } from '../../api/types';
 import { useNavigate } from 'react-router-dom';
 import { Pagination } from '../pagination/Pagination';
 import './footer.scss';
-import { Button } from '../common/button/Button';
+import { Button } from '../../common/components/button/Button';
 
 type FooterPropsType = {
   isShowOptions: boolean

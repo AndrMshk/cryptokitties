@@ -1,0 +1,17 @@
+@mixin flex($justify-content, $flex-direction, $align-items) {
+	display: flex;
+	justify-content: $justify-content;
+	flex-direction: $flex-direction;
+	align-items: $align-items;
+}
+
+@mixin modal-background {
+	@include flex(center, column, center);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+	background: rgba(255,255,255,0.6);
+}

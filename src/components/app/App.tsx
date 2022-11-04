@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Header } from '../header/Header';
 import { Footer } from '../footer/Footer';
 import { Main } from '../main/Main';
-import { ErrorMessage } from '../common/errorMessage/ErrorMessage';
-import { Loading } from '../common/loading/Loading';
+import { ErrorMessage } from '../../common/components/errorMessage/ErrorMessage';
+import { Preloader } from '../../common/components/preloader/Preloader';
 import { API } from '../../api/api';
 import axios from 'axios';
 import {
@@ -25,6 +25,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isShowOptions, setIsShowOptions] = useState<boolean>(true);
+  const [isErrorRoute, setIsErrorRoute] = useState(false);
   const [data, setData] = useState<ItemType[]>([]);
   const [error, setError] = useState<ErrorType>(null);
   const [paginationParam, setPaginationParam] = useState<PaginationParamType>(initialPaginationParam);
@@ -55,31 +56,35 @@ function App() {
   useEffect(() => {getItems();}, [paginationParam, sortParam, sortOrder]);
 
   return (
-    <div style={{height: '100%'}}>
+    <div style={{ height: '100%' }}>
       <DataContext.Provider value={{
         setIsLoading,
         setIsShowOptions,
         data,
         setError,
+        setIsErrorRoute,
       }}>
+        {!isErrorRoute &&
         <Header
           isShowOptions={isShowOptions}
           sortParam={sortParam}
           setSortParam={setSortParam}
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
-        />
+        />}
+
         <div className="app_container">
           <Main />
         </div>
+        {!isErrorRoute &&
         <Footer
           isShowOptions={isShowOptions}
           paginationOptions={paginationOptions}
           setPaginationParam={setPaginationParam}
-        />
+        />}
       </DataContext.Provider>
       {error && <ErrorMessage error={error} setError={setError} />}
-      {/*{isLoading && <Loading />}*/}
+      {isLoading && <Preloader />}
     </div>
   );
 }

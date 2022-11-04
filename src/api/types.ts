@@ -33,6 +33,7 @@ export type ContextType = {
   setIsShowOptions: (isShowOptions: boolean) => void
   data: ItemType[]
   setError: (error: ErrorType) => void
+  setIsErrorRoute: (isErrorRoute: boolean) => void
 }
 
 export type ErrorType = string | null

@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.error-page_container {
+	@include flex(center, column, center);
+	width: 100%;
+	height: 100vh;
+	gap: 30px
+}

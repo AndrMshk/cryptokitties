@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.error-message_container {
+	@include modal-background();
+	.error-message_modal {
+		@include flex(center, column, center);
+		gap: 20px;
+		padding: 30px;
+		border: 2px solid $textColor;
+		box-shadow: 0 0 5px $textColor;
+		border-radius: 10px;
+		transition: all 0.3s;
+		background-color: $secondaryBgColor;
+	}
+}

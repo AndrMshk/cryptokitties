@@ -1,5 +1,5 @@
-@import "../../commonStyles/variables";
-@import "../../commonStyles/mixins";
+@import "../../common/styles/variables";
+@import "../../common/styles/mixins";
 
 .pagination_container {
 	@include flex(space-between, row, center);

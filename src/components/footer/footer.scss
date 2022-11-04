@@ -1,11 +1,11 @@
-@import "./src/commonStyles/variables";
-@import "./src/commonStyles/mixins";
+@import "../../common/styles/variables";
+@import "../../common/styles/mixins";
 
 .footer_container {
 	@include flex(center, row, center);
 	width: 100%;
 	background-image: url('../../assets/texture.jpg');
-	height: 80px;
+	height: 60px;
 	position: fixed;
 	bottom: 0;
 	text-align: center;

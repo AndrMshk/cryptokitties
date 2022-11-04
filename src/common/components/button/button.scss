@@ -1,5 +1,5 @@
-@import "./src/commonStyles/variables";
-@import "./src/commonStyles/mixins";
+@import "../../styles/variables";
+@import "../../styles/mixins";
 
 .button_container {
 	@include flex(center, row, center);

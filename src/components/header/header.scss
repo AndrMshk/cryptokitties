@@ -1,5 +1,5 @@
-@import "./src/commonStyles/variables";
-@import "./src/commonStyles/mixins";
+@import "../../common/styles/variables";
+@import "../../common/styles/mixins";
 
 .header_container {
 	@include flex(center, row, center);
@@ -19,8 +19,9 @@
 	}
 	.header_sort-panel {
 		@include flex(flex-end, row, center);
-		gap: 20px;
+		position: relative;
 		width: 1024px;
 		text-align: right;
+		margin-right: 10px;
 	}
 }

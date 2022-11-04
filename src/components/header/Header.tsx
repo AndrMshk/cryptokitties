@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { SortOrderType, SortParamType } from '../../api/types';
 import './header.scss';
-import { Button } from '../common/button/Button';
+import { SortPanel } from '../../common/components/sortPanel/SortPanel';
+import { Button } from '../../common/components/button/Button';
 
 type HeaderPropsType = {
   isShowOptions: boolean
@@ -11,59 +12,18 @@ type HeaderPropsType = {
   setSortOrder: (sortOrder: SortOrderType) => void
 }
 
-const selectOptions = [
-  {
-    value: SortParamType.NULL,
-    title: '',
-  },
-  {
-    value: SortParamType.ID,
-    title: 'Id',
-  },
-  {
-    value: SortParamType.NAME,
-    title: 'Name',
-  },
-  {
-    value: SortParamType.CATEGORY,
-    title: 'Category',
-  },
-  {
-    value: SortParamType.PRICE,
-    title: 'Price',
-  },
-];
+export const Header: FC<HeaderPropsType> = ({ isShowOptions, ...restProps }) => {
 
-export const Header: FC<HeaderPropsType> = ({
-  isShowOptions,
-  sortOrder,
-  setSortOrder,
-  sortParam,
-  setSortParam,
-}) => {
-
-  const onChangeSortParamHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortParam(e.target.value as SortParamType);
-  };
-
-  const onChangeSortOrderHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.checked ? setSortOrder(SortOrderType.ASC) : setSortOrder(SortOrderType.DESC);
-  };
-
-  const resetFiltersHandler = () => {
-    setSortParam(SortParamType.NULL);
-    setSortOrder(SortOrderType.NULL);
-  };
+  const [isShowMenu, setIsShowMenu] = useState<boolean>(false);
 
   return (
     <header className="header_container">
       <h1>Cryptokitties</h1>
-      {isShowOptions && <div className="header_sort-panel">
-        <select name="filter" value={sortParam} onChange={onChangeSortParamHandler}>
-          {selectOptions.map((el, index) => <option key={index} value={el.value}>{el.title}</option>)}
-        </select>
-        <input type="checkbox" checked={sortOrder !== SortOrderType.DESC} onChange={onChangeSortOrderHandler} />
-       <Button title='Reset' action={resetFiltersHandler}/>
+      {isShowOptions &&
+      <div className="header_sort-panel">
+        {isShowMenu
+          ? <SortPanel {...restProps} setIsShowMenu={setIsShowMenu} />
+          : <Button title="Sort" action={() => {setIsShowMenu(!isShowMenu);}} />}
       </div>}
     </header>
   );

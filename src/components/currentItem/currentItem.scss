@@ -1,0 +1,29 @@
+@import "../../common/styles/variables";
+@import "../../common/styles/mixins";
+
+.current-item_container {
+	@include flex(center, column, center);
+	height: 100vh;
+	margin: 0 auto;
+	max-width: 300px;
+	padding: 100px 0;
+	.current-item_info {
+		@include flex(center, column, center);
+		position: relative;
+		max-width: 400px;
+		background-color: $secondaryBgColor;
+		padding: 10px;
+		border: 1px solid $textColor;
+		box-shadow: 0 0 5px $textColor;
+		border-radius: 10px;
+		h4 {
+			margin-bottom: 5px;
+		}
+		.current-item_info__available {
+			position: absolute;
+			top: 0;
+			right: 10px;
+		}
+	}
+}
+
