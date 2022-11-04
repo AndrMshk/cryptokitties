@@ -72,7 +72,6 @@ function App() {
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
         />}
-
         <div className="app_container">
           <Main />
         </div>

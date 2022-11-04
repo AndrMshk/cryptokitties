@@ -48,7 +48,7 @@
 					cursor: pointer;
 					line-height: 20px;
 					display: inline-block;
-					color: #666;
+					color: $textColor;
 				}
 				[type="radio"]:checked + label:before,
 				[type="radio"]:not(:checked) + label:before {
@@ -58,9 +58,9 @@
 					top: 0;
 					width: 18px;
 					height: 18px;
-					border: 1px solid #ddd;
+					border: 1px solid $secondaryBgColor;
 					border-radius: 100%;
-					background: #fff;
+					background: $hoverColor;
 				}
 				[type="radio"]:checked + label:after,
 				[type="radio"]:not(:checked) + label:after {

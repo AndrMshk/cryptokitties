@@ -19,34 +19,56 @@ export const Pagination: FC<PaginationPropsType> = ({ paginationOptions, setPagi
     total_pages,
   } = paginationOptions;
 
+  const goToFirstPageHandler = () => {
+    setPaginationParam({ itemsCount: limit_per_page, currentPage: 1 });
+  };
+
+  const goToPreviousPageHandler = () => {
+    setPaginationParam({ itemsCount: limit_per_page, currentPage: prev_page });
+  };
+
+  const goToCurrentPageHandler = (page: number) => {
+    current_page !== page &&
+    setPaginationParam({ itemsCount: limit_per_page, currentPage: page });
+  };
+
+  const goToNextPageHandler = () => {
+    setPaginationParam({ itemsCount: limit_per_page, currentPage: next_page });
+  };
+
+  const goToLastPageHandler = () => {
+    setPaginationParam({ itemsCount: limit_per_page, currentPage: total_pages });
+  };
+
   return (
     <div className="pagination_container">
       <div className="pagination_arrows">
         {current_page > 2 &&
         <div className="pagination_arrows-container">
-          <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: 1 });}}>
+          <div onClick={goToFirstPageHandler}>
             <IoPlayBackOutline />
           </div>
-          <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: prev_page });}}>
+          <div onClick={goToPreviousPageHandler}>
             <IoChevronBackOutline />
           </div>
         </div>}
       </div>
       <div className="pagination_pages">
-        {[prev_page, current_page, next_page].map((el, index) => <div
-          className={cn({ active: current_page === el })}
-          onClick={() => {current_page !== el && setPaginationParam({ itemsCount: limit_per_page, currentPage: el });}}
-          key={index}>
-          {el}
-        </div>)}
+        {[prev_page, current_page, next_page].map((el, index) =>
+          <div
+            className={cn({ active: current_page === el })}
+            onClick={() => goToCurrentPageHandler(el)}
+            key={index}>
+            {el}
+          </div>)}
       </div>
       <div className="pagination_arrows">
         {current_page < total_pages - 1 &&
         <div className="pagination_arrows-container">
-          <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: next_page });}}>
+          <div onClick={goToNextPageHandler}>
             <IoChevronForward />
           </div>
-          <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: total_pages });}}>
+          <div onClick={goToLastPageHandler}>
             <IoPlayForwardOutline />
           </div>
         </div>}

@@ -93,8 +93,9 @@ export const SortPanel: FC<SortPanelPropsType> = ({
           </div>
           <div
             onClick={onChangeSortOrderHandler}
-            className={cn(['sort-panel_controls__arrow'],
-              { ['sort-panel_controls__arrow-desc']: sortData.sortOrder === SortOrderType.DESC })}>
+            className={
+              cn(['sort-panel_controls__arrow'],
+                { ['sort-panel_controls__arrow-desc']: sortData.sortOrder === SortOrderType.DESC })}>
             <TbArrowDownCircle />
           </div>
         </div>
