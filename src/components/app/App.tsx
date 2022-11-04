@@ -79,7 +79,7 @@ function App() {
         />
       </DataContext.Provider>
       {error && <ErrorMessage error={error} setError={setError} />}
-      {isLoading && <Loading />}
+      {/*{isLoading && <Loading />}*/}
     </div>
   );
 }

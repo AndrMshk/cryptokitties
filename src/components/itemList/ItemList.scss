@@ -1,0 +1,9 @@
+@import "./src/commonStyles/variables";
+@import "./src/commonStyles/mixins";
+
+.list_container {
+	@include flex(center, row, center);
+	gap: 25px;
+	flex-wrap: wrap;
+	padding: 100px 0;
+}

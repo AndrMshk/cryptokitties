@@ -1,0 +1,18 @@
+@import "./src/commonStyles/variables";
+@import "./src/commonStyles/mixins";
+
+.button_container {
+	@include flex(center, row, center);
+	min-height: 28px;
+	border-radius: 10px;
+	transition: all 0.3s;
+	background-color: $secondaryBgColor;
+	&:hover {
+		background-color: $activeColor;
+		color: $hoverColor;
+		cursor: pointer;
+	}
+	p {
+		margin: 0 12px;
+	}
+}

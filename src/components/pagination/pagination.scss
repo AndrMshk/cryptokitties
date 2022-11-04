@@ -1,0 +1,38 @@
+@import "../../commonStyles/variables";
+@import "../../commonStyles/mixins";
+
+.pagination_container {
+	@include flex(space-between, row, center);
+	width: 450px;
+	color: $hoverColor;
+	.pagination_pages {
+		@include flex(center, row, center);
+		gap: 10px;
+		.active {
+			font-size: 25px;
+		}
+		& div {
+			transition: color 0.3s;
+			&:hover {
+				color: $activeColor;
+				cursor: pointer;
+				transition: color 0.3s;
+			}
+		}
+	}
+	.pagination_arrows {
+		width: 100px;
+		.pagination_arrows-container {
+			@include flex(space-between, row, center);
+			gap: 5px;
+			& div {
+				transition: color 0.3s;
+				&:hover {
+					color: $activeColor;
+					cursor: pointer;
+					transition: color 0.3s;
+				}
+			}
+		}
+	}
+}

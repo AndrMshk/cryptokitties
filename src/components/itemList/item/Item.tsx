@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { ItemType } from '../../../api/types';
 import { useNavigate } from 'react-router-dom';
+import './item.scss';
+// @ts-ignore
+import ava from '../../../assets/cat.png';
 
 export const Item: FC<ItemType> = ({
   image_url,
@@ -15,17 +18,22 @@ export const Item: FC<ItemType> = ({
 
   const navigate = useNavigate();
 
+  const [isValidPicture, setIsValidPicture] = useState<boolean>(true);
+
   return (
-    <div>
-      <div onClick={() => {navigate(`/detailed/${id}`); }}>
-        {name}
-      </div>
-      <img
-        style={{ width: '100px' }}
-        onError={() => {console.log(image_url);}}
-        src={image_url}
-        alt="cat_image"
-      />
+    <div
+      onClick={() => {navigate(`/detailed/${id}`); }}
+      className="item_container">
+      <div className="item_title">{name}</div>
+      {isValidPicture
+        ? <img
+          onError={() => {setIsValidPicture(false);}}
+          src={image_url}
+          alt="cat_image" />
+        : <img
+          src={ava}
+          alt="cat_image" />}
+      <div>Price: {price}</div>
     </div>
   );
 };

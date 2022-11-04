@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { PaginationOptions, PaginationParamType } from '../../../api/types';
+import { PaginationOptions, PaginationParamType } from '../../api/types';
+import './pagination.scss';
+import cn from 'classnames';
 
 type PaginationPropsType = {
   paginationOptions: PaginationOptions
@@ -17,10 +19,10 @@ export const Pagination: FC<PaginationPropsType> = ({ paginationOptions, setPagi
   } = paginationOptions;
 
   return (
-    <div>
-      <div>
+    <div className="pagination_container">
+      <div className="pagination_arrows">
         {current_page > 2 &&
-        <div>
+        <div className="pagination_arrows-container">
           <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: 1 });}}>
             Start
           </div>
@@ -28,13 +30,18 @@ export const Pagination: FC<PaginationPropsType> = ({ paginationOptions, setPagi
             previous...
           </div>
         </div>}
+      </div>
+      <div className="pagination_pages">
         {[prev_page, current_page, next_page].map((el, index) => <div
+          className={cn({ active: current_page === el })}
           onClick={() => {current_page !== el && setPaginationParam({ itemsCount: limit_per_page, currentPage: el });}}
           key={index}>
           {el}
         </div>)}
+      </div>
+      <div className="pagination_arrows">
         {current_page < total_pages - 1 &&
-        <div>
+        <div className="pagination_arrows-container">
           <div onClick={() => {setPaginationParam({ itemsCount: limit_per_page, currentPage: next_page });}}>
             ...next
           </div>

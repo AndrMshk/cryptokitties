@@ -3,11 +3,13 @@
 
 .header_container {
 	@include flex(center, row, center);
+	z-index: 10;
 	width: 100%;
 	background-image: url('../../assets/texture.jpg');
 	height: 80px;
 	position: fixed;
 	text-align: center;
+	box-shadow: 0 3px 15px $textColor;
 	h1 {
 		position: absolute;
 		top: 50%;
@@ -17,12 +19,8 @@
 	}
 	.header_sort-panel {
 		@include flex(flex-end, row, center);
-		display: none;
 		gap: 20px;
 		width: 1024px;
 		text-align: right;
-	}
-	.show {
-		display: flex;
 	}
 }

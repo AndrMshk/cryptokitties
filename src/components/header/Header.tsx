@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { SortOrderType, SortParamType } from '../../api/types';
 import './header.scss';
-import cn from 'classnames'
+import { Button } from '../common/button/Button';
 
 type HeaderPropsType = {
   isShowOptions: boolean
@@ -58,17 +58,13 @@ export const Header: FC<HeaderPropsType> = ({
   return (
     <header className="header_container">
       <h1>Cryptokitties</h1>
-      {/*<div className={cn({isShowOptions: 'show'})}></div>*/}
-
-
-      {/*{isShowOptions && <div className="header_sort-panel">*/}
-      <div className={cn('header_sort-panel', {show: isShowOptions})}>
+      {isShowOptions && <div className="header_sort-panel">
         <select name="filter" value={sortParam} onChange={onChangeSortParamHandler}>
           {selectOptions.map((el, index) => <option key={index} value={el.value}>{el.title}</option>)}
         </select>
         <input type="checkbox" checked={sortOrder !== SortOrderType.DESC} onChange={onChangeSortOrderHandler} />
-        <button onClick={resetFiltersHandler}>Reset</button>
-      </div>
+       <Button title='Reset' action={resetFiltersHandler}/>
+      </div>}
     </header>
   );
 };

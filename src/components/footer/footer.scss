@@ -1,0 +1,14 @@
+@import "./src/commonStyles/variables";
+@import "./src/commonStyles/mixins";
+
+.footer_container {
+	@include flex(center, row, center);
+	width: 100%;
+	background-image: url('../../assets/texture.jpg');
+	height: 80px;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	box-shadow: 0 -3px 15px $textColor;
+	z-index: 10;
+}
