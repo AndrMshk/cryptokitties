@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useState } from 'react';
+import React, { SyntheticEvent, useContext, useLayoutEffect, useState } from 'react';
 import { API } from '../../api/api';
 import axios from 'axios';
 import { ContextType, ItemType } from '../../api/types';
@@ -15,7 +15,12 @@ export const CurrentItem = () => {
   const { setError, setIsLoading, setIsShowOptions } = useContext<ContextType>(DataContext);
 
   const [currentItem, setCurrentItem] = useState<ItemType | null>(null);
-  const [isValidPicture, setIsValidPicture] = useState<boolean>(true);
+  const [isValidImage, setIsValidImage] = useState(true);
+
+  const errorHandler = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    (event.target as HTMLImageElement).src = ava;
+    setIsValidImage(false);
+  };
 
   const getItem = async() => {
     try {
@@ -40,15 +45,11 @@ export const CurrentItem = () => {
   return (
     <div className="current-item_container">
       <h3>{currentItem?.name}</h3>
-      {isValidPicture
-        ? <img
-          onError={() => {setIsValidPicture(false);}}
-          src={currentItem?.image_url}
-          alt="cat_image" />
-        : <img
-          className="item_default-img"
-          src={ava}
-          alt="cat_image" />}
+      <img
+        style={!isValidImage
+          ? { width: '250px', padding: '20px' }
+          : undefined}
+        onError={errorHandler} src={currentItem?.image_url} alt="photo" />
       <div className="current-item_info">
         <h4>Info</h4>
         {currentItem?.available &&

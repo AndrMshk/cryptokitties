@@ -8,10 +8,6 @@ type ButtonPropsType = {
 
 export const Button: FC<ButtonPropsType> = ({ title, action }) => {
   return (
-    <div
-      onClick={action}
-      className="button_container">
-      <p>{title}</p>
-    </div>
+    <button className="button_container" onClick={action}>{title}</button>
   );
 };

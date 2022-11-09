@@ -62,21 +62,15 @@ export const SortPanel: FC<SortPanelPropsType> = ({
       : setSortData({ ...sortData, sortOrder: SortOrderType.DESC });
   };
 
-  const resetFiltersHandler = () => {
-    setSortParam(SortParamType.NULL);
-    setSortOrder(SortOrderType.NULL);
-    setIsShowMenu(false);
-  };
-
-  const setSortParamHandler = () => {
-    setSortParam(sortData.sortParam);
-    setSortOrder(sortData.sortOrder);
+  const setSortHandler = (isReset: boolean) => {
+    setSortParam(isReset ? SortParamType.NULL : sortData.sortParam);
+    setSortOrder(isReset ? SortOrderType.NULL : sortData.sortOrder);
     setIsShowMenu(false);
   };
 
   return (
     <div className="sort-panel_container">
-      <div className="sort-panel_form">
+      <form className="sort-panel_form">
         <div className="sort-panel_controls">
           <div className="sort-panel_controls__radio">
             {selectOptions.map((el, index) =>
@@ -88,7 +82,6 @@ export const SortPanel: FC<SortPanelPropsType> = ({
                   value={el.value}
                   checked={sortData.sortParam === el.value} />
                 <label htmlFor={el.value}>{el.title}</label>
-                {/*<p>{el.title}</p>*/}
               </div>)}
           </div>
           <div
@@ -99,9 +92,9 @@ export const SortPanel: FC<SortPanelPropsType> = ({
             <TbArrowDownCircle />
           </div>
         </div>
-        <Button title="Ok" action={setSortParamHandler} />
-      </div>
-      <Button title="Reset" action={resetFiltersHandler} />
+        <Button title="Ok" action={()=>{setSortHandler(false)}} />
+      </form>
+      <Button title="Reset" action={()=>{setSortHandler(true)}} />
     </div>
   );
 };

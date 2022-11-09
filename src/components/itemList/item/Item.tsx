@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, SyntheticEvent, useState } from 'react';
 import { ItemType } from '../../../api/types';
 import { useNavigate } from 'react-router-dom';
 import './item.scss';
@@ -6,24 +6,21 @@ import ava from '../../../assets/cat.png';
 
 export const Item: FC<ItemType> = ({ image_url, id, name, price }) => {
 
+  const [isValidImage, setIsValidImage] = useState(true);
+
   const navigate = useNavigate();
 
-  const [isValidPicture, setIsValidPicture] = useState<boolean>(true);
+  const errorHandler = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    (event.target as HTMLImageElement).src = ava;
+    setIsValidImage(false);
+  };
 
   return (
-    <div
-      onClick={() => {navigate(`/detailed/${id}`); }}
-      className="item_container">
+    <div onClick={() => {navigate(`/detailed/${id}`); }} className="item_container">
       <div className="item_title">{name}</div>
-      {isValidPicture
-        ? <img
-          onError={() => {setIsValidPicture(false);}}
-          src={image_url}
-          alt="cat_image" />
-        : <img
-          className="item_default-img"
-          src={ava}
-          alt="cat_image" />}
+      <img
+        style={{ padding: !isValidImage ? '50px' : undefined }}
+        onError={errorHandler} src={image_url} alt="photo" />
       <div>Price: {price}</div>
     </div>
   );
